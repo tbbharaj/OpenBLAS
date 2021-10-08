@@ -20,30 +20,11 @@ jobs:
         uses: docker/setup-qemu-action@v1
         with:
           platforms: arm64
-
+      - name: Available platforms
+        run: echo ${{ steps.qemu.outputs.platforms }}
       #- name: Get Markupsafe cache
       #  uses: actions/cache@v2
       #  id: markupsafe-cache
       #  with:
       #    path: markupsafe-cache/
       #    key: markupsafe-cache
-      - name: Compilation cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.ccache
-          # We include the commit sha in the cache key, as new cache entries are
-          # only created if there is no existing entry for the key yet.
-          key: ${{ runner.os }}-ccache-${{ github.sha }}
-          # Restore any ccache cache entry, if none for
-          # ${{ runner.os }}-ccache-${{ github.sha }} exists
-          restore-keys: |
-            ${{ runner.os }}-ccache-
-
-      - name: Run docker
-        runs-on: ubuntu-latest
-        container:
-          image: tonistiigi/binfmt:latest 
-          steps:
-            - uses: actions/checkout@v2
-            - name: What OS is running
-              run: uname -a
