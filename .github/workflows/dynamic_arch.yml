@@ -41,14 +41,14 @@ jobs:
 
       - name: Install Dependencies
         uses: tonistiigi/binfmt:latest
-        run: |
+        with: |
           #    if [ "$RUNNER_OS" == "Linux" ]; then
-          sudo apt-get install -y gfortran cmake ccache
+          run: sudo apt-get install -y gfortran cmake ccache
             #else
             #echo "$RUNNER_OS not supported"
             #exit 1
             #fi
-          ccache -M 300M  # Limit the ccache size; Github's overall cache limit is 5GB
+            #ccache -M 300M  # Limit the ccache size; Github's overall cache limit is 5GB
 
       - name: gfortran build
         #if: matrix.build == 'make' && matrix.fortran == 'gfortran'
