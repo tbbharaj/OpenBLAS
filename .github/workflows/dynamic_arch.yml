@@ -39,11 +39,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ccache-
 
-  docker-run:
-    runs-on: ubuntu-latest
-    container:
-      image: tonistiigi/binfmt:latest 
-    steps:
-      - uses: actions/checkout@v2
-      - name: What OS is running
-        run: uname -a
+      - name: Run docker
+        runs-on: ubuntu-latest
+        container:
+          image: tonistiigi/binfmt:latest 
+          steps:
+            - uses: actions/checkout@v2
+            - name: What OS is running
+              run: uname -a
