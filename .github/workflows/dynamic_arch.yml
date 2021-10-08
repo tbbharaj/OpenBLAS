@@ -39,25 +39,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ccache-
 
-      - name: Install Dependencies
-        uses: docker/setup-qemu-action@v1
-        with: 
-          platforms: arm64
-          run: sudo apt-get install -y gfortran cmake ccache
-            #else
-            #echo "$RUNNER_OS not supported"
-            #exit 1
-            #fi
-            #ccache -M 300M  # Limit the ccache size; Github's overall cache limit is 5GB
-
-      - name: gfortran build
-        #if: matrix.build == 'make' && matrix.fortran == 'gfortran'
-        run: |
-          #  if [ "$RUNNER_OS" == "Linux" ]; then
-          export PATH="/usr/lib/ccache:${PATH}"
-            #else
-            #echo "$RUNNER_OS not supported"
-            #exit 1
-            #fi
-
-          make -j$(nproc) DYNAMIC_ARCH=1 USE_OPENMP=1
+  docker-run:
+    runs-on: ubuntu-latest
+    container:
+      image: tonistiigi/binfmt:latest 
+    steps:
+      - uses: actions/checkout@v2
+      - name: What OS is running
+        run: uname -a
