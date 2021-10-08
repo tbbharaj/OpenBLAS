@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-ccache-
 
       - name: Install Dependencies
-        container: tonistiigi/binfmt:latest
+        uses: tonistiigi/binfmt:latest
         run: |
           #    if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get install -y gfortran cmake ccache
