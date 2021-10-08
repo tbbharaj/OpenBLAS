@@ -42,8 +42,7 @@ jobs:
       - name: Install Dependencies
         uses: docker/setup-qemu-action@v1
         with: 
-        platforms: arm64
-          #    if [ "$RUNNER_OS" == "Linux" ]; then
+          platforms: arm64
           run: sudo apt-get install -y gfortran cmake ccache
             #else
             #echo "$RUNNER_OS not supported"
