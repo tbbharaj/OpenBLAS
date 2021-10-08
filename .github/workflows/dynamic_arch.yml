@@ -21,14 +21,26 @@ jobs:
         with:
           platforms: arm64
 
-     - name: Get Markupsafe cache
+      #- name: Get Markupsafe cache
+      #  uses: actions/cache@v2
+      #  id: markupsafe-cache
+      #  with:
+      #    path: markupsafe-cache/
+      #    key: markupsafe-cache
+      - name: Compilation cache
         uses: actions/cache@v2
-        id: markupsafe-cache
         with:
-          path: markupsafe-cache/
-          key: markupsafe-cache
+          path: ~/.ccache
+          # We include the commit sha in the cache key, as new cache entries are
+          # only created if there is no existing entry for the key yet.
+          key: ${{ runner.os }}-ccache-${{ github.sha }}
+          # Restore any ccache cache entry, if none for
+          # ${{ runner.os }}-ccache-${{ github.sha }} exists
+          restore-keys: |
+            ${{ runner.os }}-ccache-
 
       - name: Install Dependencies
+        container: tonistiigi/binfmt:latest
         run: |
           #    if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get install -y gfortran cmake ccache
