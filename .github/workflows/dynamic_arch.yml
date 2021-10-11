@@ -6,12 +6,12 @@ jobs:
 
   build_arm:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        fortran: [gfortran]
-        build: [cmake, make]
+      #strategy:
+      #fail-fast: false
+      #matrix:
+      #  os: [ubuntu-latest]
+      #  fortran: [gfortran]
+      #  build: [cmake, make]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
