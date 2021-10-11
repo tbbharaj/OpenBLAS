@@ -26,7 +26,7 @@ jobs:
           username: tbbharaj
           password: tanveen123
           #registry: gcr.io
-          image: test-image:latest
+          image: tbbharaj/test-image
           run: echo "hello world" 
       #- name: Available platforms
       #  run: sudo apt-get install -y gfortran cmake ccache
