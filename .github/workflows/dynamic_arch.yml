@@ -25,7 +25,7 @@ jobs:
         with:
           username: tbbharaj
           password: tanveen123
-          registry: gcr.io
+          #registry: gcr.io
           image: test-image:latest
           run: echo "hello world" 
       #- name: Available platforms
