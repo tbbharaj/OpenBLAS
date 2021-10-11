@@ -20,8 +20,16 @@ jobs:
         uses: docker/setup-qemu-action@v1
         with:
           platforms: arm64
-      - name: Available platforms
-        run: sudo apt-get install -y gfortran cmake ccache
+      
+      - uses: addnab/docker-run-action@v3
+        with:
+          username: tbbharaj
+          password: tanveen123
+          registry: gcr.io
+          image: test-image:latest
+          run: echo "hello world" 
+      #- name: Available platforms
+      #  run: sudo apt-get install -y gfortran cmake ccache
       #- name: Get Markupsafe cache
       #  uses: actions/cache@v2
       #  id: markupsafe-cache
