@@ -283,6 +283,7 @@ matrix:
       script:
         - travis_wait 45 make && make lapack-test
 
+
     - os: linux
       arch: arm64
       dist: focal
@@ -302,7 +303,7 @@ matrix:
         # for matrix annotation only
         - TARGET_BOX=ARM64_LINUX
         - BTYPE="BINARY=64 USE_OPENMP=1"
-        
+
 # whitelist
 branches:
   only:
