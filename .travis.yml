@@ -295,13 +295,15 @@ matrix:
           packages:
             - gfortran
       before_script: &common-before
-        - COMMON_FLAGS="DYNAMIC_ARCH=1 NUM_THREADS=64"
+        - COMMON_FLAGS="DYNAMIC_ARCH=1 NUM_THREADS=64 NO_SHARED=1"
       script:
-        - make QUIET_MAKE=1 $COMMON_FLAGS $BTYPE
-        - make PREFIX=../build install
+       #- make QUIET_MAKE=1 $COMMON_FLAGS $BTYPE
+        - make 
+        - make PREFIX=./ install
+       #- make PREFIX=../build install
       env:
         # for matrix annotation only
-        - TARGET_BOX=ARM64_LINUX
+        #- TARGET_BOX=ARM64_LINUX
         - BTYPE="BINARY=64 USE_OPENMP=1"
 
 # whitelist
